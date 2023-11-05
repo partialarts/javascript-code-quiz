@@ -12,25 +12,37 @@ var submitBtn = document.getElementById('submit');
 var feedbackEl = document.getElementById('feedback');
 
 // Define global variables for timer and current question
-var currentQuestion = 0;
+var questionIndex = 0;
 
 // The startQuiz function is called when startButton is clicked
 function startQuiz() {
   startScreenEl.style.display = "none";
-  questionsEl.style.display = "none";
+  questionsEl.setAttribute("class", "start");
   getQuestion();
   countdown();
 }
 
-function getQuestion(){
-  timerEl.textContent = timeLeft;
+function endQuiz() {
+    questionsEl.style.display = "none"
+    endScreenEl.setAttribute("class", "start");
+    finalScoreEl.textContent = timeLeft;
+  }
+
+function getQuestion() {
+  questionsEl.textContent = questions[questionIndex].question;
+    for (var i = 0; i < questions[questionIndex].answers.length; i++) {
+      var answer = questions[questionIndex].answers[i];
+      var button = document.createElement("button");
+      button.setAttribute("data-state", i);
+      button.textContent = (i + 1) + ". " + answer;
+      questionsChoices.appendChild(button);
+    }
 }
 
-function endQuiz() {
-  questionsEl.style.display = "none"
-  endScreenEl.setAttribute("class", "start");
-  finalScoreEl.textContent = timeLeft;
-}
+// button.addEventListener("click", function(event) {
+//     const chosenIndex = parseInt(event.target.getAttribute("data-choice-index"));
+
+//   });
 
 // Timer that counts down from 60
 function countdown() {
@@ -49,10 +61,9 @@ function countdown() {
   }, 1000);
 }
 
-
-
 // Attach event listener to start button to call startGame function on click
 startBtn.addEventListener("click", startQuiz);
+
 
 
 
