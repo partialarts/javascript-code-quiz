@@ -2,13 +2,13 @@
  
 var questions = [
 {
-question: "Who is JSON?",
-answers: ["he's a boke", "he doesn't exist", "some Javascript conecept"],
-correct: 2,
+question: "What is JSON?",
+answers: ["It writes code for you", "His name is spelled Jason!", "JSON is a lightweight format for storing and transporting data"],
+correct: 3
 },
 {
 question: "Who is Robert?",
 answers: ["he's a boke", "he doesn't exist", "no idea"],
-correct: 2,
+correct: 2
 }
-]
+];

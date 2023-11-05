@@ -13,13 +13,15 @@ var feedbackEl = document.getElementById('feedback');
 
 // Define global variables for timer and current question
 var questionIndex = 0;
+var timeLeft = 60;
+
 
 // The startQuiz function is called when startButton is clicked
 function startQuiz() {
   startScreenEl.style.display = "none";
   questionsEl.setAttribute("class", "start");
-  getQuestion();
-  countdown();
+  getQuestion(questionIndex);
+  startCountdown();
 }
 
 function endQuiz() {
@@ -28,26 +30,22 @@ function endQuiz() {
     finalScoreEl.textContent = timeLeft;
   }
 
-function getQuestion() {
-  questionsEl.textContent = questions[questionIndex].question;
-    for (var i = 0; i < questions[questionIndex].answers.length; i++) {
-      var answer = questions[questionIndex].answers[i];
-      var button = document.createElement("button");
-      button.setAttribute("data-state", i);
-      button.textContent = (i + 1) + ". " + answer;
-      questionsChoices.appendChild(button);
-    }
-}
-
-// button.addEventListener("click", function(event) {
-//     const chosenIndex = parseInt(event.target.getAttribute("data-choice-index"));
-
-//   });
+function getQuestion(currentQuestion) {
+  if (currentQuestion < questions.length) {
+    questionsTitle.textContent = questions[currentQuestion].question;
+    feedbackEl.setAttribute("class", "feedback");
+      for (var i = 0; i < questions[currentQuestion].answers.length; i++) {
+        var button = document.createElement("button");
+        button.setAttribute("data-state", i);
+        button.textContent = questions[currentQuestion].answers[i];
+        questionsChoices.appendChild(button);
+      }
+  } else 
+      endQuiz();
+}   
 
 // Timer that counts down from 60
-function countdown() {
-  var timeLeft = 60;
-
+function startCountdown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timer = setInterval(function() {
     // Set the `textContent` of `timerEL` to show the remaining seconds and decrement 'timeLeft' by 1
@@ -61,6 +59,22 @@ function countdown() {
   }, 1000);
 }
 
+// Attach event listener to questionChoices buttons and validate whether answer is correct
+questionsChoices.addEventListener("click", function(event) {
+    var chosenButton = event.target;
+    if (chosenButton.matches("button")) {
+        var answerData = chosenButton.getAttribute("data-state");
+        if (answerData == questions[questionIndex].correct) {
+            feedbackEl.textContent = "Correct!"
+        } else {
+            feedbackEl.textContent = "Wrong!"
+            timeLeft -= 10;
+        }
+        questionIndex++;
+        getQuestion(questionIndex);
+    }
+});
+
 // Attach event listener to start button to call startGame function on click
 startBtn.addEventListener("click", startQuiz);
 
@@ -73,4 +87,4 @@ startBtn.addEventListener("click", startQuiz);
 // else --10 from timer variables
 
 // create function with number parameter for button within "questions" div in HTML
-// Use for loop to iterate buttonEL and create 
+// Use for loop to iterate buttonEL and create
