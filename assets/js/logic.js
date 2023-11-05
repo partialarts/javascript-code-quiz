@@ -1,41 +1,58 @@
 // define variables for all required DOM nodes
-var timerEl = document.getElementById('#time');
-var startScreenEl = document.getElementById('#start-screen');
-var startBtn = document.getElementById('#start');
-var questionsEl = document.getElementById('#questions');
-var questionsTitle = document.getElementById('#question-title');
-var questionsChoices = document.getElementById('#choices');
-var endScreenEl = document.getElementById('#end-screen');
-var finalScoreEl = docunment.getElementById('#final-score');
-var initialsInput = document.getElementById('#initials');
-var submitBtn = document.getElementById('#submit');
-var feedbackEl = document.getElementById('#feedback');
+var timerEl = document.getElementById('time');
+var startScreenEl = document.getElementById('start-screen');
+var startBtn = document.getElementById('start');
+var questionsEl = document.getElementById('questions');
+var questionsTitle = document.getElementById('question-title');
+var questionsChoices = document.getElementById('choices');
+var endScreenEl = document.getElementById('end-screen');
+var finalScoreEl = document.getElementById('final-score');
+var initialsInput = document.getElementById('initials');
+var submitBtn = document.getElementById('submit');
+var feedbackEl = document.getElementById('feedback');
 
-// define global variables for timer and current question
+// Define global variables for timer and current question
 var currentQuestion = 0;
 
+// The startQuiz function is called when startButton is clicked
 function startQuiz() {
-    startBtn.style.display = "none";
-    showQuestion();
-    startTimer();
-  }
+  startScreenEl.style.display = "none";
+  questionsEl.style.display = "none";
+  getQuestion();
+  countdown();
+}
+
+function getQuestion(){
+  timerEl.textContent = timeLeft;
+}
+
+function endQuiz() {
+  questionsEl.style.display = "none"
+  endScreenEl.setAttribute("class", "start");
+  finalScoreEl.textContent = timeLeft;
+}
 
 // Timer that counts down from 60
-function Countdown() {
+function countdown() {
   var timeLeft = 60;
 
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var countdownInterval = setInterval(function() {
+  var timer = setInterval(function() {
     // Set the `textContent` of `timerEL` to show the remaining seconds and decrement 'timeLeft' by 1
-    timerEl.textContent = timeLeft;
     timeLeft--;
+    timerEl.textContent = timeLeft;
     // Conditional statement to show the remaining time left as long as countdownTimer is greater than 1
     if(timeLeft === 0) {
-      clearInterval(countdownInterval);
-      finalScoreEl.textContent = timeLeft;
+      clearInterval(timer)
+      endQuiz();
     }
   }, 1000);
 }
+
+
+
+// Attach event listener to start button to call startGame function on click
+startBtn.addEventListener("click", startQuiz);
 
 
 
