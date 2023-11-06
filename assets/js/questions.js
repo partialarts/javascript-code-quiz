@@ -13,7 +13,7 @@ var questions = [
     },
     {
         question: "What is a method?",
-        answers: ["1. Another word for syntax", "2. A method is a function associated with an object property", "3. A block of code designed to create an array from a key", "4. All of the above"],
+        answers: ["1. Another word for syntax", "2. A function associated with an object property", "3. A block of code designed to create an array from a key", "4. All of the above"],
         correct: 1
     },
     {

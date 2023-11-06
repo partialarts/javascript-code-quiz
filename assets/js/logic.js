@@ -68,7 +68,26 @@ function clearFeedback() {
     feedbackEl.setAttribute("class", "feedback hide"); // clears question feedback from the screen 
 }
 
-// Attach event listener to questionChoices buttons and validate whether answer is correct
+// Event listener for submit button, to submit the form
+submitBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    if(initialsInput.value === "") {
+        alert("Initials can't be blank");
+    } else {
+      var initialsText = initialsInput.value.trim();
+      var scores = JSON.parse(localStorage.getItem("scores")) || [];
+    //   var currentScore = {
+    //     initials: initialsText,
+    //     score: timeLeft,
+    //   };
+      scores.push({initialsText, timeLeft})
+      localStorage.setItem("scores", JSON.stringify(scores));
+      document.location.assign("highscores.html")
+    // console.log(highScores);
+    }
+});
+
+// Event listener for questionChoices buttons and validation for whether answer is correct
 questionsChoices.addEventListener("click", function (event) { // listens for click event on choices node
     feedbackEl.setAttribute("class", "feedback"); // shows the feedback node and applies it's CSS
     var chosenButton = event.target; // Variable created for the element where the click event ocurred
@@ -85,7 +104,7 @@ questionsChoices.addEventListener("click", function (event) { // listens for cli
         questionIndex++; // adds 1 to the question index
         questionsChoices.textContent = ""; // resets choices node
         getQuestion(questionIndex); // runs getQuestion function to generate the next question
-        setTimeout(clearFeedback, 1000); // Runs the clearFeedback function after 1 second
+        setTimeout(clearFeedback, 1500); // Runs the clearFeedback function after 1.5 seconds
     }
 });
 
