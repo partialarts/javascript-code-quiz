@@ -10,19 +10,20 @@ var finalScoreEl = document.getElementById('final-score');
 var initialsInput = document.getElementById('initials');
 var submitBtn = document.getElementById('submit');
 var feedbackEl = document.getElementById('feedback');
+var correctSound = document.getElementById('correct');
+var incorrectSound = document.getElementById('incorrect');
 
-// Define global variables for timer and current question
+// Define global variables for timer and current question index
 var questionIndex = 0;
 var timeLeft = 60;
 var timer = 0;
-
 
 // The startQuiz function is called when startButton is clicked
 function startQuiz() {
     startScreenEl.style.display = "none"; // hides the start screen DOM node
     questionsEl.setAttribute("class", "start"); // Shows the questions DOM node
-    getQuestion(questionIndex); // Runs the function to get the first question
     startCountdown(); // Starts the countdown timer function
+    getQuestion(questionIndex); // Runs the function to get the first question
 }
 
 // The endQuiz function is called when the timer runs out or all the questions are answered
@@ -31,9 +32,9 @@ function endQuiz() {
     timerEl.textContent = 0; // sets timer text to 0
     questionsEl.style.display = "none"; // hides the quesions DOM node
     endScreenEl.setAttribute("class", "start"); // shows the end-screen DOM node
-    if (timeLeft < 0) { // Conditional to change the score to 0 if it is a negative integer
+    if (timeLeft < 0) { // Change the score to 0 if it is a negative integer
         finalScoreEl.textContent = 0;
-    } else { // Otherwise display the score using the timeLeft variable.
+    } else { // Otherwise display the final score using the timeLeft variable.
         finalScoreEl.textContent = timeLeft;
     }
 }
@@ -43,25 +44,23 @@ function startCountdown() {
     timer = setInterval(function () { // The `setInterval()` method calls a function to be executed every 1000 milliseconds
         timeLeft--; // decrement 'timeLeft' by 1
         timerEl.textContent = timeLeft; // Set the `textContent` of `timerEL` to show the remaining seconds
-        // Conditional statement to run the endQuiz() function if the score drops to 0
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0) {  // Run the endQuiz() function if the score drops to 0 or below
             endQuiz();
         }
     }, 1000);
 }
 
-
-function getQuestion(currentQuestion) {
-    if (currentQuestion < questions.length) {
-        questionsTitle.textContent = questions[currentQuestion].question;
-        for (var i = 0; i < questions[currentQuestion].answers.length; i++) {
-            var button = document.createElement("button");
-            button.setAttribute("data-state", i);
-            button.textContent = questions[currentQuestion].answers[i];
+function getQuestion(currentQuestion) { // Function to get a question
+    if (currentQuestion < questions.length) { // Display a question as long as the question index hasn't reached the end of the array
+        questionsTitle.textContent = questions[currentQuestion].question; // display the current question in the question-title node
+        for (var i = 0; i < questions[currentQuestion].answers.length; i++) { // iterates through the answers for the length of the array
+            var button = document.createElement("button"); // declares variable for the button and creates a button element
+            button.setAttribute("data-state", i); // Sets data of each button to correspond to the index of it's answer
+            button.textContent = questions[currentQuestion].answers[i]; // Sets text of each button to index of answer
             questionsChoices.appendChild(button);
         }
     } else {
-        endQuiz();
+        endQuiz(); // ends the quiz once all the questions have been iterated through
     }
 }
 
@@ -70,20 +69,22 @@ function clearFeedback() {
 }
 
 // Attach event listener to questionChoices buttons and validate whether answer is correct
-questionsChoices.addEventListener("click", function (event) {
-    feedbackEl.setAttribute("class", "feedback");
-    var chosenButton = event.target;
-    if (chosenButton.matches("button")) {
-        var answerData = chosenButton.getAttribute("data-state");
-        if (answerData == questions[questionIndex].correct) {
+questionsChoices.addEventListener("click", function (event) { // listens for click event on choices node
+    feedbackEl.setAttribute("class", "feedback"); // shows the feedback node and applies it's CSS
+    var chosenButton = event.target; // Variable created for the element where the click event ocurred
+    if (chosenButton.matches("button")) { // Checks that click event is a button
+        var answerData = chosenButton.getAttribute("data-state"); // Gets the answer index
+        if (answerData == questions[questionIndex].correct) { // Checks answer against correct one and displays feedback
             feedbackEl.textContent = "Correct!"
+            correctSound.play();
         } else {
             feedbackEl.textContent = "Wrong!"
-            timeLeft -= 10;
+            timeLeft -= 10; // decrements timer by 10 seconds if wrong answer is chosen
+            incorrectSound.play();
         }
-        questionIndex++;
-        questionsChoices.textContent = "";
-        getQuestion(questionIndex);
+        questionIndex++; // adds 1 to the question index
+        questionsChoices.textContent = ""; // resets choices node
+        getQuestion(questionIndex); // runs getQuestion function to generate the next question
         setTimeout(clearFeedback, 1000); // Runs the clearFeedback function after 1 second
     }
 });

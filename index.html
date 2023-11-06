@@ -10,6 +10,8 @@
   </head>
 
   <body>
+    <audio preload="auto" id="correct" src="./sfx/correct.wav"></audio>
+    <audio preload="auto" id="incorrect" src="./sfx/incorrect.wav"></audio>
     <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
     <div class="timer">Time: <span id="time">0</span></div>
@@ -28,7 +30,6 @@
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices"></div>
-        
       </div>
 
       <div id="end-screen" class="hide">

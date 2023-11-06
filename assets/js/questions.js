@@ -23,7 +23,7 @@ var questions = [
     },
     {
         question: "Which of these it true about a function()?",
-        answers: ["1. Defined with the function keyword", "2. Parameters are listed inside the parentheses", "3. Arguments are the values received by the function when it is invoked", "4. All of the above"],
+        answers: ["1. Defined with the function keyword", "2. Parameters are listed inside the parentheses", "3. Arguments are received by the function when it is invoked", "4. All of the above"],
         correct: 3
     }
 ];
