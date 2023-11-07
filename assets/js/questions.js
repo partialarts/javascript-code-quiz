@@ -1,4 +1,4 @@
-// Create variable called questions, with an array to hold and for each question. Each questions stores possible answers in an array.
+// Questions array, with each question/answer and correct value as an object. Answers are stored in an array.
 
 var questions = [
     {

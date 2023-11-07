@@ -32,7 +32,7 @@ function endQuiz() {
     timerEl.textContent = 0; // sets timer text to 0
     questionsEl.style.display = "none"; // hides the quesions DOM node
     endScreenEl.setAttribute("class", "start"); // shows the end-screen DOM node
-    if (timeLeft < 0) { // Change the score to 0 if it is a negative integer
+    if (timeLeft < 0) { // Change the timer to 0 if it is a negative integer
         timeLeft = 0;
     }
         finalScoreEl.textContent = timeLeft;
@@ -68,21 +68,16 @@ function clearFeedback() {
 }
 
 // Event listener for submit button, to submit the form
-submitBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    if(initialsInput.value === "") {
+submitBtn.addEventListener("click", function (event) { // listens for click on submitBtn
+    event.preventDefault(); // Prevents default form behaviour
+    if(initialsInput.value === "") { // Alerts user if form is left blank
         alert("Initials can't be blank");
     } else {
-      var initialsText = initialsInput.value.trim();
-      var scores = JSON.parse(localStorage.getItem("scores")) || [];
-    //   var currentScore = {
-    //     initials: initialsText,
-    //     score: timeLeft,
-    //   };
-      scores.push({initialsText, timeLeft})
-      localStorage.setItem("scores", JSON.stringify(scores));
-      document.location.assign("highscores.html")
-    // console.log(highScores);
+      var initialsText = initialsInput.value.trim(); // Trims empty space from form input
+      var scores = JSON.parse(localStorage.getItem("scores")) || []; // Gets scores from localStorage array
+      scores.push({initialsText, timeLeft}) // Pushes scores to new object
+      localStorage.setItem("scores", JSON.stringify(scores)); // Creates item in localStorage for scores
+      document.location.assign("highscores.html") // Directs to high scores page
     }
 });
 
