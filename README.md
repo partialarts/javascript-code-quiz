@@ -2,21 +2,21 @@
 
 ## Description
 
-The purpose of this project was to build a multiple choice timed code quiz using JavaScript and web API's. The quiz stores high scores so that the user can guage their progress as they learn. It uses HTML and CSS to dynamically display the elements of the quiz.
+The purpose of this project was to build a multiple choice timed code quiz using JavaScript and web API's. The quiz stores high scores so that the user can guage their progress as they learn. In addition this was a great opportunity to practice the concepts learned on the course.
 
-In addition to the above this was a great opportunity to practice the concepts learned on the course.
+This was the toughest JavaScript project I've made so far and a culmination of all of the concepts I've been learning over the previous weeks.
 
-Once I identified all the HTML I'd need to manipulate, these were held as variables using `getElementById`. Variables for the timer and index of the current question were also defined. The questions themselves were in a separate JavaScript file as an array of objects. The code for the high scores was defined in another file.
+My first step was to identify all the HTML I'd need to manipulate, these were held as variables using `getElementById`. I also defined variables for the timer and index of the current question. The questions themselves were defined in a separate file as an array of objects. The code for the high scores was defined in another file.
 
-I decided to break the tasks down into functions to make the code as versatile as possible so that they could be called in multiple places.
+I decided to break down the code into functions to make it as versatile as possible, so that it could be used in multiple places.
 
-Conditional `if` statements were used to generate the questions based on the question index variable. A `for` loop was used to show the answers based on the length of their array, as well as generate the button elements. 
+Conditional `if` statements were used to generate a question based on the question index variable. A `for` loop was used to show the answers based on the length of their array, as well as generate the button elements. 
 
-A separate `addEventListener` method was used to register a click event on the answer buttons, adding 1 to the question index each time an answer is clicked. The `addEventListener` method also contained a conditional statement to check the answer and return feedback text, as well as play the relevant sound effect.
+A separate `addEventListener` method was used to register a click event on the answer buttons, adding 1 to the question index each time an answer is clicked. The `addEventListener` method also used a conditional statement to check the answer and return feedback, as well as play the relevant sound effect.
 
-On the end screen an `addEventListener` method was used to on the Submit button and `JSON.stringify` and `JSON.parse` was used to store the scores in a new array as a string.
+On the end screen an `addEventListener` method was used on the Submit button and `JSON.stringify` and `JSON.parse` was used to store the scores in a new array as a string.
 
-The scores page retrieved the scores from local storage, used an `if` statement and `sort()` method to sort the scores from highest to lowest and a `for` loop to iterate through and display thee scores
+The scores page retrieved the scores from local storage, an `if` statement and `sort()` method were used to sort the scores from highest to lowest and a `for` loop to iterate through and display the scores
 
 I spent some time organising the code once finished to ensure its readability, trying to group related objects together with clear comments.
 
