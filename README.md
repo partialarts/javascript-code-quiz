@@ -1,4 +1,4 @@
-# Front End Bootcamp - Week 5 Challenge - Code Quiz
+# Front End Bootcamp - Week 6 Challenge - Code Quiz
 
 ## Description
 
