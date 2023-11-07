@@ -44,4 +44,4 @@ To start the quix, click "Start Quiz" and click on an answer to proceed to the n
 
 ## License
 
-MIT - [See LICENSE file in repo](https://github.com/partialarts/Console-Finances/blob/main/LICENSE)
+MIT - [See LICENSE file in repo](https://github.com/partialarts/javascript-code-quiz/blob/main/LICENSE)
