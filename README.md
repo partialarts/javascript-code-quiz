@@ -2,9 +2,7 @@
 
 ## Description
 
-The purpose of this project was to build a multiple choice timed code quiz using JavaScript and web API's, storing high scores so that the user can guage their progress as they learn. 
-
-In addition this was a great opportunity to practice the concepts learned on the course. It was the toughest JavaScript project I've made so far and a culmination of all of the concepts I've been learning.
+The purpose of this project was to build a multiple choice timed code quiz using JavaScript and web API's, storing high scores so that the user can guage their progress as they learn, and a great opportunity to practice the concepts learned on the course. It was the toughest JavaScript project I've made so far and a culmination of all of the concepts I've been learning.
 
 My first step was to identify all the HTML I'd need to manipulate, these were held as variables using `getElementById`. I also defined variables for the timer and index of the current question. The questions were defined in a separate file as an array of objects. The code for the high scores was defined in another file.
 
