@@ -33,10 +33,9 @@ function endQuiz() {
     questionsEl.style.display = "none"; // hides the quesions DOM node
     endScreenEl.setAttribute("class", "start"); // shows the end-screen DOM node
     if (timeLeft < 0) { // Change the score to 0 if it is a negative integer
-        finalScoreEl.textContent = 0;
-    } else { // Otherwise display the final score using the timeLeft variable.
-        finalScoreEl.textContent = timeLeft;
+        timeLeft = 0;
     }
+        finalScoreEl.textContent = timeLeft;
 }
 
 // Timer that counts down from 60

@@ -16,11 +16,9 @@ highScores.sort(function (a, b) {
     if (a.timeLeft > b.timeLeft) {
         return -1;
     }
-
     if (a.timeLeft === b.timeLeft) {
         return 0;
     }
-
     if (a.timeLeft < b.timeLeft) {
         return 1;
     }
