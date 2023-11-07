@@ -10,9 +10,9 @@ My first step was to identify all the HTML I'd need to manipulate, these were he
 
 I decided to break down the code into functions to make it as versatile as possible, so that it could be used in multiple places. Conditional `if` statements were used to generate a question based on the question index variable. A `for` loop was used to show the answers based on the length of their array, as well as generate the button elements. 
 
-A separate `addEventListener` method was used to register a click event on the answer buttons, adding 1 to the question index each time. A conditional `if` statement checks the answer and returns feedback, as well as playing the relevant sound effect.
+A separate `EventListener` method was used to register a click event on the answer buttons, adding 1 to the question index each time. A conditional `if` statement checks the answer and returns feedback, as well as playing the relevant sound effect.
 
-On the end screen another `addEventListener` method was used on the Submit button and `JSON.stringify` was used to store the scores in a new array as a string.
+On the end screen an `EventListener` method was used on the Submit button and `JSON.stringify` was used to store the scores in a new array as a string.
 
 The scores page retrieved the scores from local storage using `JSON.parse`, an `if` statement and `sort()` method were used to sort the scores from highest to lowest and a `for` loop to iterate through and display the scores
 
